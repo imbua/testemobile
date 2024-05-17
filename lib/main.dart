@@ -10,9 +10,8 @@ import 'package:testemobile/views/mytreeview_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
-   Get.put(MyTreeViewController());
-   Get.put(LoginController());
+  Get.put(MyTreeViewController());
+  Get.put(LoginController());
 
   //Deu muito conflito e esgotou meu tempo, ficou a desenvolver
   DatabaseHelper.instance.database;

@@ -34,7 +34,7 @@ class MyTreeViewView extends StatelessWidget {
               children: [
                 Container(
                   height: 80,
-                  padding: EdgeInsets.only(left: 20),
+                  padding: const EdgeInsets.only(left: 20),
                   color: Colors.red[200],
                   child: Column(
                     children: [
@@ -251,7 +251,10 @@ class EditNodeBottomSheet extends StatelessWidget {
                       .red[200]!
                       .withOpacity(1.0)), // Define a cor de fundo como vermelha
                 ),
-                child: const Text('Confirm'),
+                child: const Text(
+                  'Confirm',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
             const SizedBox(height: 10),
@@ -261,7 +264,10 @@ class EditNodeBottomSheet extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text('Cancel'),
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(color: Colors.red),
+                ),
               ),
             ),
           ],

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:testemobile/controllers/databasehelper.dart';
 import 'package:testemobile/controllers/login_controller.dart';
 import 'package:testemobile/models/mytreeview.dart';
 
@@ -71,6 +72,10 @@ class MyTreeViewController extends GetxController {
       if (jsonString.isNotEmpty) {
         List<dynamic> jsonData = jsonDecode(jsonString);
         treeData.value = MyTreeView.fromJsonList(jsonData);
+
+        await DatabaseHelper.instance.deleteAllTreeNodes();
+
+        await DatabaseHelper.instance.insertTreeNodes(treeData);
       } else {
         // Se a resposta não for bem-sucedida, exibe uma mensagem de erro
         //Get.snackbar('Error', 'Failed to load tree data');

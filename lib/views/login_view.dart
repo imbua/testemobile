@@ -127,7 +127,10 @@ class LoginView extends StatelessWidget {
                                         Colors.red[200]!.withOpacity(
                                             1.0)), // Define a cor de fundo como vermelha
                                   ),
-                                  child: const Text('LOGIN'),
+                                  child: const Text(
+                                    'LOGIN',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
                               )),
                       ],

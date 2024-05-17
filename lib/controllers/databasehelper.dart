@@ -3,7 +3,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' show join;
 import 'package:testemobile/models/mytreeview.dart';
 
-
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._init();
 
@@ -95,5 +94,32 @@ class DatabaseHelper {
     final db = await instance.database;
 
     db.close();
+  }
+
+  Future<void> deleteAllTreeNodes() async {
+    final db = await database;
+    await db.delete('mytreeview');
+  }
+
+  Future<void> insertTreeNode(MyTreeView node) async {
+    final db = await database;
+    await db.insert(
+      'mytreeview',
+      node.toJson(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  Future<void> insertTreeNodes(List<MyTreeView> nodes) async {
+    final db = await database;
+    Batch batch = db.batch();
+    for (var node in nodes) {
+      batch.insert(
+        'mytreeview',
+        node.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+    await batch.commit();
   }
 }
