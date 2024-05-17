@@ -17,8 +17,8 @@ class LoginController extends GetxController {
     isLoading.value = true;
 
     final Map<String, String> data = {
-      'username': 'user_test', //username.value, user_test
-      'password': 'test_password', //password.value, test_password
+      'username': '', //username.value, user_test
+      'password': '', //password.value, test_password
     };
 
     try {
