@@ -122,4 +122,14 @@ class DatabaseHelper {
     }
     await batch.commit();
   }
+
+  Future<void> updateTreeNode(int id, String newName) async {
+    final db = await database;
+    await db.update(
+      'mytreeview',
+      {'name': newName},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }

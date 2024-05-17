@@ -36,6 +36,9 @@ class MyTreeViewController extends GetxController {
       treeData
           .refresh(); // Atualiza a lista observável para refletir as mudanças
       await _updateNodeNameOnServer(nodeId, newName);
+
+      // Atualiza o nó no banco de dados local
+      await DatabaseHelper.instance.updateTreeNode(nodeId, newName);
     } else {
       Get.snackbar('Error', 'Node not found');
     }
