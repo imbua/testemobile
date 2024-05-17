@@ -103,6 +103,10 @@ class DatabaseHelper {
 
   Future<void> insertTreeNode(MyTreeView node) async {
     final db = await database;
+    final data = node.toJson();
+
+    data['parent'] = data['parent'] ?? 0;
+
     await db.insert(
       'mytreeview',
       node.toJson(),
@@ -114,9 +118,12 @@ class DatabaseHelper {
     final db = await database;
     Batch batch = db.batch();
     for (var node in nodes) {
+      final data = node.toJson();
+
+      data['parent'] = data['parent'] ?? 0;
       batch.insert(
         'mytreeview',
-        node.toJson(),
+        data,
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     }

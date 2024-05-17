@@ -17,8 +17,8 @@ class LoginController extends GetxController {
     isLoading.value = true;
 
     final Map<String, String> data = {
-      'username': '', //username.value, user_test
-      'password': '', //password.value, test_password
+      'username': username.value, //username.value, user_test
+      'password': password.value, //password.value, test_password
     };
 
     try {
@@ -44,7 +44,7 @@ class LoginController extends GetxController {
       }
     } catch (e) {
       // print('Error: $e');
-      Get.snackbar('Error', 'Failed to connect to the server');
+      Get.snackbar('Error', 'Failed to connect to the server$e');
     } finally {
       isLoading.value = false;
     }
@@ -68,7 +68,8 @@ class LoginController extends GetxController {
       }
     } catch (e) {
       // print('Error: $e');
-      Get.snackbar('Error', 'Failed to connect to the server');
+      // ignore: prefer_interpolation_to_compose_strings
+      Get.snackbar('Error', 'Failed to connect to the server$e');
     }
   }
 }

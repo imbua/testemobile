@@ -66,7 +66,7 @@ class MyTreeViewController extends GetxController {
         Get.snackbar('Error', 'Failed to update node name on server');
       }
     } catch (e) {
-      Get.snackbar('Error', 'Failed to connect to the server');
+      Get.snackbar('Error', 'Failed to connect to the server $e');
     }
   }
 
@@ -85,7 +85,8 @@ class MyTreeViewController extends GetxController {
       }
     } catch (e) {
       // Se ocorrer algum erro durante a solicitação, exibe uma mensagem de erro
-      Get.snackbar('Error', 'Failed to connect to the server');
+      print(e);
+      Get.snackbar('Error', 'Failed to connect to the server$e ');
     }
   }
 }

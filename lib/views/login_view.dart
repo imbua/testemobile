@@ -112,7 +112,7 @@ class LoginView extends StatelessWidget {
                             filled: true,
                             fillColor: Colors.grey[200],
                           ),
-                          obscureText: true,
+                          obscureText: false,
                         ),
                         const SizedBox(height: 30),
                         Obx(() => loginController.isLoading.value
