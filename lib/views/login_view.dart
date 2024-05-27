@@ -6,7 +6,6 @@ class LoginView extends StatelessWidget {
   LoginView({super.key});
 
   final loginController = Get.find<LoginController>();
-  bool varObscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +13,7 @@ class LoginView extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
     double screenWidth = MediaQuery.of(context).size.width - 20;
     double buttonWidth = screenWidth - 10;
+    RxBool varObscureText = true.obs;
 
     return Scaffold(
       backgroundColor: Colors.red[200],
@@ -102,28 +102,31 @@ class LoginView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        TextField(
-                          onChanged: (value) =>
-                              loginController.password.value = value,
-                          decoration: InputDecoration(
-                            border: UnderlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(40),
-                            ),
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                varObscureText
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
+                        Obx(
+                          () => TextField(
+                            onChanged: (value) =>
+                                loginController.password.value = value,
+                            decoration: InputDecoration(
+                              border: UnderlineInputBorder(
+                                borderSide:
+                                    const BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(40),
                               ),
-                              onPressed: () {
-                                varObscureText = !varObscureText;
-                              },
+                              filled: true,
+                              fillColor: Colors.grey[200],
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  varObscureText.value
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  varObscureText.value = !varObscureText.value;
+                                },
+                              ),
                             ),
+                            obscureText: varObscureText.value,
                           ),
-                          obscureText: varObscureText,
                         ),
                         const SizedBox(height: 30),
                         Obx(() => loginController.isLoading.value
