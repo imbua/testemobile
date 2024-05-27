@@ -6,6 +6,7 @@ class LoginView extends StatelessWidget {
   LoginView({super.key});
 
   final loginController = Get.find<LoginController>();
+  bool varObscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -111,8 +112,18 @@ class LoginView extends StatelessWidget {
                             ),
                             filled: true,
                             fillColor: Colors.grey[200],
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                varObscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                varObscureText = !varObscureText;
+                              },
+                            ),
                           ),
-                          obscureText: false,
+                          obscureText: varObscureText,
                         ),
                         const SizedBox(height: 30),
                         Obx(() => loginController.isLoading.value
